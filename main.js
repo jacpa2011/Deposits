@@ -15,7 +15,7 @@ let player = {
 setInterval(function() {
     MoneyLabel.textContent = `\u20ac${parseFloat(format(player.money)).toFixed(2)}`
     WaterAmount.textContent = `You have  ${player.water.amount} water bottle(s)`
-    WaterReturn.textContent = `Returns: \u20ac${player.water.sell}`
+    WaterReturn.textContent = `Returns: \u20ac${parseFloat(format(player.water.sell)).toFixed(2)}`
 }, 20)
 
 WaterSell.addEventListener("click", function() {
