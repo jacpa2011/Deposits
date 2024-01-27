@@ -8,7 +8,7 @@ let player = {
     money: new Decimal(0.5),
     water: {
         amount: new Decimal(0),
-        sell: new Decimal(0.4)
+        sell: new Decimal(0.35)
     }
 }
 
