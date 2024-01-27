@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: monospace;
 }
 
 
@@ -14,7 +15,7 @@ body {
 }
 
 
-div[id="money"] {
+div[id="MoneyLabel"] {
     display: flex;
     color: white;
     font-family: monospace;
@@ -24,4 +25,48 @@ div[id="money"] {
 
 pre {
     display: flex;
+}
+
+button[id="buywater"] {
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 200px;
+    padding: 20px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+#buywaterelse {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 240px;
+    color: white;
+    font-size: medium;
+    padding: 20px
+}
+
+button[id="sellwater"] {
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 300px;
+    padding: 20px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+}
+
+#returnwater {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 340px;
+    color: white;
+    font-size: medium;
+    padding: 20px;
 }
