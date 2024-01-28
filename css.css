@@ -54,7 +54,7 @@ button[id="sellwater"] {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    margin-top: 400px;
+    margin-top: 420px;
     padding: 20px;
     background-color: transparent;
     color: white;
@@ -65,7 +65,7 @@ button[id="sellwater"] {
     position: absolute;
     left: 50%;
     transform: translate(-50%);
-    margin-top: 440px;
+    margin-top: 460px;
     color: white;
     font-size: medium;
     padding: 20px;
@@ -107,4 +107,14 @@ button[id="sellwater"] {
     background-color: lightblue;
     bottom: 1px;
     height: 0px;
+}
+
+#drinkwatercooldown {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    margin-top: 360px;
+    color: white;
+    font-size: medium;
+    padding: 20px;
 }
