@@ -7,6 +7,7 @@ const WaterReturn = document.querySelector("#returnwater")
 const WaterBottle = document.getElementById("waterbottle")
 const WaterDrink = document.querySelector("#drinkwater")
 const WaterDrinkCooldown = document.querySelector("#drinkwatercooldown")
+const hardreset = document.querySelector("#hardreset")
 
 let player = {
     money: new Decimal(0.5),
@@ -43,6 +44,7 @@ WaterSell.addEventListener("click", function() {
     if (player.water.emptyamount.gte(new Decimal(0.1))) {
         player.water.emptyamount = player.water.emptyamount.sub(1)
         player.money = player.money.add(player.water.sell)
+        Save()
     }
 })
 
@@ -50,8 +52,11 @@ WaterBuy.addEventListener("click", function() {
     if (player.money.gte(0.3)) {
         player.money = player.money.sub(0.3)
         player.water.amount = player.water.amount.add(1)
-        player.water.waterbottleamount = player.water.waterbottleamountmax
+        if (player.water.waterbottleamount.lte(0.1)) {
+            player.water.waterbottleamount = player.water.waterbottleamountmax
+        }
     }
+    Save()
 })
 
 WaterDrink.addEventListener("click", function() {
@@ -84,5 +89,12 @@ WaterDrink.addEventListener("click", function() {
                     }
             }
         }
+        Save()
+    }
+})
+
+hardreset.addEventListener("click", function(){
+    if (confirm('Are you sure you want to Hard Reset? (everything saved will be gone!)')) {
+        HardReset()
     }
 })

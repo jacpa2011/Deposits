@@ -118,3 +118,14 @@ button[id="sellwater"] {
     font-size: medium;
     padding: 20px;
 }
+
+#hardreset {
+    cursor: pointer;
+    position: absolute;
+    padding: 20px;
+    left: 10px;
+    bottom: 10px;
+    background-color: rgba(177, 0, 0, 0.338);
+    color: rgb(255, 255, 255);
+    border: 2px solid rgb(177, 0, 0);
+}
