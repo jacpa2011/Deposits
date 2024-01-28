@@ -22,6 +22,8 @@ let player = {
     }
 }
 
+const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay*1000))
+
 setInterval(function() {
     MoneyLabel.textContent = `\u20ac${parseFloat(format(player.money)).toFixed(2)}`
     WaterAmount.textContent = `You have  ${player.water.amount} full water bottle(s)`
@@ -55,9 +57,25 @@ WaterBuy.addEventListener("click", function() {
 WaterDrink.addEventListener("click", function() {
     if (player.water.drinkcooldown.lte(0.03)) {
         if (player.water.amount.gte(0.1)) {
-            player.water.drinkcooldown = player.water.drinkcooldownmax
-            player.water.waterbottleamount = player.water.waterbottleamount.sub(player.water.drinkamount)
-            if (player.water.waterbottleamount.lte(0)) {
+            player.water.drinkcooldown = player.water.drinkcooldownmax;
+            let i = 1
+            var wateranimation = setInterval(function() {
+                player.water.waterbottleamount = player.water.waterbottleamount.sub(player.water.drinkamount.div(Math.pow(2, i)));
+                i += 1;
+                if (i == 51) {
+                    clearInterval(wateranimation)
+                }
+                if (player.water.waterbottleamount.lte(0.01)) {
+                    player.water.waterbottleamount = new Decimal(0)
+                    player.water.amount = player.water.amount.sub(1)
+                    player.water.emptyamount = player.water.emptyamount.add(1)
+                        if (player.water.amount.gte(new Decimal(0.1))) {
+                            player.water.waterbottleamount = player.water.waterbottleamountmax
+                        }
+                    clearInterval(wateranimation)
+                }
+            }, 20);
+            if (player.water.waterbottleamount.lte(0.01)) {
                 player.water.waterbottleamount = new Decimal(0)
                 player.water.amount = player.water.amount.sub(1)
                 player.water.emptyamount = player.water.emptyamount.add(1)
