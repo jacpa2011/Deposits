@@ -72,13 +72,14 @@ WaterDrink.addEventListener("click", function() {
                 }
                 if (player.water.waterbottleamount.lte(0.01)) {
                     player.water.waterbottleamount = new Decimal(0)
+                    if (player.water.amount.sub(1).gte(0)) {
                     player.water.amount = player.water.amount.sub(1)
                     player.water.emptyamount = player.water.emptyamount.add(1)
                         if (player.water.amount.gte(new Decimal(0.1))) {
                             player.water.waterbottleamount = player.water.waterbottleamountmax
                         }
                     clearInterval(wateranimation)
-                }
+                }}
             }, 20);
             if (player.water.waterbottleamount.lte(0.01)) {
                 player.water.waterbottleamount = new Decimal(0)
