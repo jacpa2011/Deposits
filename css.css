@@ -86,11 +86,9 @@ button[id="sellwater"] {
 
 #waterbottleimage {
     position: absolute;
-    left: 50%;
+    left: 64%;
     transform: translate(-50%);
-    margin-bottom: 525px;
-    bottom: 1;
-    margin-left: 244px;
+    bottom: 50%;
     color: white;
     font-size: medium;
     padding: 20px;
@@ -99,14 +97,12 @@ button[id="sellwater"] {
 
 #waterbottle {
     position: absolute;
-    left: 50%;
+    left: 63.5%;
     transform: translate(-50%);
-    margin-bottom: 560px;
-    margin-left: 240px;
+    bottom: 53.5%;
     z-index: 1;
     width: 100px;
     background-color: lightblue;
-    bottom: 1px;
     height: 0px;
 }
 
@@ -122,7 +118,7 @@ button[id="sellwater"] {
 
 #hardreset {
     cursor: pointer;
-    position: absolute;
+    position: absolute;                                                   
     padding: 20px;
     left: 10px;
     bottom: 10px;
