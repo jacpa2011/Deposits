@@ -86,6 +86,7 @@ button[id="sellwater"] {
 
 #waterbottleimage {
     position: absolute;
+    top: 219;
     left: 64%;
     transform: translate(-50%);
     bottom: 50%;
@@ -97,13 +98,14 @@ button[id="sellwater"] {
 
 #waterbottle {
     position: absolute;
+    top: 266;
     left: 63.5%;
     transform: translate(-50%);
-    bottom: 53.5%;
     z-index: 1;
     width: 100px;
     background-color: lightblue;
     height: 0px;
+    transition: top 0.3s cubic-bezier(0,1.16,.36,.94), height 0.3s cubic-bezier(0,1.16,.36,.94);
 }
 
 #drinkwatercooldown {
