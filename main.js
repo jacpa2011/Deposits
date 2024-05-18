@@ -10,7 +10,7 @@ const WaterDrinkCooldown = document.querySelector("#drinkwatercooldown")
 const hardreset = document.querySelector("#hardreset")
 
 let player = {
-    money: new Decimal(0.5),
+    money: new Decimal(0.15),
     water: {
         amount: new Decimal(0),
         cost: new Decimal(0.14),
