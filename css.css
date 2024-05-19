@@ -87,8 +87,8 @@ button[id="sellwater"] {
 #waterbottleimage {
     position: absolute;
     top: 219;
-    left: 64%;
-    transform: translate(-50%);
+    margin: 0 auto;
+    transform: translateX(260px);
     bottom: 50%;
     color: white;
     font-size: medium;
@@ -99,8 +99,8 @@ button[id="sellwater"] {
 #waterbottle {
     position: absolute;
     top: 266;
-    left: 63.5%;
-    transform: translate(-50%);
+    margin: 0 auto;
+    transform: translateX(260px);
     z-index: 1;
     width: 100px;
     background-color: lightblue;
