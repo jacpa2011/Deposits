@@ -4,6 +4,7 @@ function saveitems(name, location) { // this basically just removes the localsto
 
 function Save() {
     if (localStorage) {
+        saveitems("firstload", false)
         saveitems("money", player.money);
         saveitems("wateramount", player.water.amount)
         saveitems("wateremptyamount", player.water.emptyamount)
@@ -31,6 +32,8 @@ function GetItems(saved, newdecimal) { //removes json.parse and localstorage
 }
 
 function Get() {
+    let firstload = Getitems("firstload", false)
+    if (!firstload) {
     if (localStorage) {
     player.money = GetItems("money", true);
     player.water.amount = GetItems("wateramount", true);
@@ -43,10 +46,11 @@ function Get() {
     player.water.drinkcooldownmax = GetItems("waterdrinkcooldownmax", true);
     player.upgrade.deflation = GetItems("upgradedeflation", true);
     player.upgrade.deflationcost = GetItems("upgradedeflationcost", true);
-    }
+    }}
 }
 
 function HardReset() {
     localStorage.clear(); // wipe localstorage
+    saveitems("firstload", true)
     location.reload(true)
 }
