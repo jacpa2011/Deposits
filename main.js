@@ -1,3 +1,4 @@
+
 const MoneyLabel = document.querySelector("#Money")
 const WaterBuy = document.querySelector("#buywater")
 const WaterAmount = document.querySelector("#wateramount")
@@ -30,9 +31,18 @@ let player = {
         deflationcost: new Decimal(0.35)
     }
 };
+function checkifbelowcost() {
+    
+        player.money = player.water.cost
+        const textElement = document.querySelector("#notice");
+        textElement.style.transition = "none"
+        textElement.style.color = "rgb(205,0,0)";
+        setTimeout(() => {
+            textElement.style.transition = "color 3s cubic-bezier(1,0,.35,.98)";
+            textElement.style.color = "rgb(153, 153, 153)";
+        }, 2000)
 
-const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay*1000))
-
+}
 setInterval(function() { // gametick
     player.money = new Decimal(Decimal.round(player.money.mul(100)).div(100)) // round money to 0.00
     MoneyLabel.textContent = `\u20ac${parseFloat(format(player.money)).toFixed(2)}`
@@ -54,8 +64,8 @@ setInterval(function() { // gametick
     else {
         player.water.drinkcooldown = new Decimal(0)
     }
-    if (player.money.lte(player.water.cost) && player.water.emptyamount == 0 && player.water.amount == 0) {
-        player.money = player.water.cost
+    if (player.money.lte(player.water.cost.sub(0.001)) && player.water.emptyamount == 0 && player.water.amount == 0) {
+    checkifbelowcost() // in a function so it doesnt interrupt gametick
     }
 }, 20)
 
