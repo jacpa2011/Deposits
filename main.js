@@ -61,13 +61,14 @@ setInterval(function() { // gametick
 
 setInterval(function(){ //autosave
 Save()
-}, 20000) // bla bla bla
+}, 10000)
 
 WaterSell.addEventListener("click", function() {
     if (player.water.emptyamount.gte(new Decimal(0.1))) {
         player.water.emptyamount = player.water.emptyamount.sub(1)
         player.money = player.money.add(player.water.sell)
     }
+    Save()
 })
 
 WaterBuy.addEventListener("click", function() {
@@ -78,6 +79,7 @@ WaterBuy.addEventListener("click", function() {
             player.water.waterbottleamount = player.water.waterbottleamountmax
         }
     }
+    Save()
 })
 
 WaterDrink.addEventListener("click", function() {
@@ -104,6 +106,7 @@ WaterDrink.addEventListener("click", function() {
             }
         }
     }
+    Save()
 })
 
 DeflationButton.addEventListener("click", function(){
@@ -116,6 +119,7 @@ DeflationButton.addEventListener("click", function(){
             DeflationCost.textContent = "Maxed"
         }
     }}
+    Save()
 })
 
 hardreset.addEventListener("click", function(){

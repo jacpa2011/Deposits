@@ -32,9 +32,9 @@ function GetItems(saved, newdecimal) { //removes json.parse and localstorage
 }
 
 function Get() {
-    let firstload = Getitems("firstload", false)
-    if (!firstload) {
     if (localStorage) {
+    let firstload = GetItems("firstload", false)
+    if (!firstload) {
     player.money = GetItems("money", true);
     player.water.amount = GetItems("wateramount", true);
     player.water.emptyamount = GetItems("wateremptyamount", true);
