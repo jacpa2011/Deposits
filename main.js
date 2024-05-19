@@ -61,7 +61,7 @@ setInterval(function() { // gametick
 
 setInterval(function(){ //autosave
 Save()
-}, 20000)
+}, 20000) // bla bla bla
 
 WaterSell.addEventListener("click", function() {
     if (player.water.emptyamount.gte(new Decimal(0.1))) {
