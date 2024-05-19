@@ -7,6 +7,9 @@ const WaterReturn = document.querySelector("#returnwater")
 const WaterBottle = document.getElementById("waterbottle")
 const WaterDrink = document.querySelector("#drinkwater")
 const WaterDrinkCooldown = document.querySelector("#drinkwatercooldown")
+const WaterCost = document.querySelector("#watercost")
+const DeflationCost = document.querySelector("#deflationcost")
+const DeflationButton = document.querySelector("#deflation")
 const hardreset = document.querySelector("#hardreset")
 
 let player = {
@@ -21,12 +24,17 @@ let player = {
         drinkamount: new Decimal(41),
         drinkcooldown: new Decimal(0),
         drinkcooldownmax: new Decimal(1.5),
+    },
+    upgrade: {
+        deflation: new Decimal(0),
+        deflationcost: new Decimal(0.35)
     }
-}
+};
 
 const sleepNow = (delay) => new Promise((resolve) => setTimeout(resolve, delay*1000))
 
-setInterval(function() {
+setInterval(function() { // gametick
+    player.money = new Decimal(Decimal.round(player.money.mul(100)).div(100)) // round money to 0.00
     MoneyLabel.textContent = `\u20ac${parseFloat(format(player.money)).toFixed(2)}`
     WaterAmount.textContent = `You have  ${player.water.amount} full water bottle(s)`
     WaterEmptyAmount.textContent = `You have ${player.water.emptyamount} empty water bottle(s)`
@@ -34,7 +42,11 @@ setInterval(function() {
     WaterReturn.textContent = `Returns: \u20ac${parseFloat(format(player.water.sell)).toFixed(2)}`
     if (parseFloat(format(Decimal.div(player.water.waterbottleamount, player.water.waterbottleamountmax).mul(205))) != parseFloat(WaterBottle.style.height)) {
     WaterBottle.style.height = parseFloat(format(Decimal.div(player.water.waterbottleamount, player.water.waterbottleamountmax).mul(205)))
-    WaterBottle.style.top = (266*1.77 - parseFloat(WaterBottle.style.height))
+    WaterBottle.style.top = (266*1.77 - parseFloat(WaterBottle.style.height));
+    }
+    WaterCost.textContent = `Cost: \u20ac${parseFloat(format(player.water.cost)).toFixed(2)}`;
+    if (DeflationCost.textContent != "Maxed") {
+    DeflationCost.textContent = `Cost: \u20ac${parseFloat(format(player.upgrade.deflationcost)).toFixed(2)}`;
     }
     if (player.water.drinkcooldown.gte(0.01)) {
         player.water.drinkcooldown = player.water.drinkcooldown.sub(new Decimal(1).div(50))
@@ -42,13 +54,19 @@ setInterval(function() {
     else {
         player.water.drinkcooldown = new Decimal(0)
     }
+    if (player.money.lte(player.water.cost) && player.water.emptyamount == 0 && player.water.amount == 0) {
+        player.money = player.water.cost
+    }
 }, 20)
+
+setInterval(function(){ //autosave
+Save()
+}, 20000)
 
 WaterSell.addEventListener("click", function() {
     if (player.water.emptyamount.gte(new Decimal(0.1))) {
         player.water.emptyamount = player.water.emptyamount.sub(1)
         player.money = player.money.add(player.water.sell)
-        Save()
     }
 })
 
@@ -60,7 +78,6 @@ WaterBuy.addEventListener("click", function() {
             player.water.waterbottleamount = player.water.waterbottleamountmax
         }
     }
-    Save()
 })
 
 WaterDrink.addEventListener("click", function() {
@@ -86,8 +103,19 @@ WaterDrink.addEventListener("click", function() {
                     }
             }
         }
-        Save()
     }
+})
+
+DeflationButton.addEventListener("click", function(){
+    if (DeflationCost.textContent != "Maxed") {
+    if (player.money.sub(player.upgrade.deflationcost).gte(0)) {
+        player.money = player.money.sub(player.upgrade.deflationcost)
+        player.water.cost = player.water.cost.sub(0.01)
+        player.upgrade.deflationcost = player.upgrade.deflationcost.mul(2.1)
+        if (new Decimal(Decimal.round(player.water.cost.mul(100)).div(100)) == 0.01) {
+            DeflationCost.textContent = "Maxed"
+        }
+    }}
 })
 
 hardreset.addEventListener("click", function(){

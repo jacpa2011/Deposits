@@ -1,14 +1,17 @@
+<!-- HTML -->
 <html>
-    <body  onload="Get()">
+    <link href="favicon.ico" rel="icon" type="image/x-icon">
+    <title>Deposits</title> <!-- makes the tab name-->
+    <body onload="Get()">
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
-
+        <p id="notice">(Your money is automatically set to the cost of a water bottle if its below the cost and you have no bottles.)</p><br>
         <div id="MoneyLabel">
             <pre><h1>You have</h1><h1> </h1><h1 id="Money"></h1></pre>
         </div>
         <div>
             <button id="buywater">Buy a water bottle.</button>
             <div id="buywaterelse">
-                <p>cost: €0.14</p>
+                <p id="watercost">cost: €0.14</p>
                 <p id="wateramount">You have  full water bottle(s)</p>
                 <p id="emptywateramount">You have  full water bottle(s)</p>
             </div>
@@ -21,6 +24,17 @@
     </body>
     <img id="waterbottleimage" src="water.png" width="170" height="286">
     <div id="waterbottle" class="square"></div>
+    <h1 id="upgradestext">Upgrades</h1>
+    <br>
+    <div class="container" id="upgrades">
+        <button id="deflation">
+            <div class="title">Deflation</div>
+            <br>
+            <div class="description">Decrease the cost of water bottles.</div>
+            <br>
+            <div class="description" id="deflationcost">Cost: €0.35</div>
+</button>
+    </div>
 
     <script type="text/javascript" src="break_eternity.js"></script>
     <script type="text/javascript" src="numberformatting.js"></script>

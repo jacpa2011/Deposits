@@ -1,10 +1,10 @@
-function saveitems(name, location) {
+function saveitems(name, location) { // this basically just removes the localstorage.setitem and json.stringify
     localStorage.setItem(name, JSON.stringify((location)));
 }
 
 function Save() {
     if (localStorage) {
-        saveitems("money", player.money)
+        saveitems("money", player.money);
         saveitems("wateramount", player.water.amount)
         saveitems("wateremptyamount", player.water.emptyamount)
         saveitems("watersell", player.water.sell)
@@ -13,15 +13,18 @@ function Save() {
         saveitems("waterdrinkamount", player.water.drinkamount)
         saveitems("waterdrinkcooldown", player.water.drinkcooldown)
         saveitems("waterdrinkcooldownmax", player.water.drinkcooldownmax)
+        saveitems("upgradedeflation", player.upgrade.deflation)
+        saveitems("upgradedeflationcost", player.upgrade.deflationcost)
     }
 }
 
-function GetItems(saved, location, newdecimal) {
+function GetItems(saved, newdecimal) { //removes json.parse and localstorage
+    let location = "Error" // placeholder
     if (saved) {
-        if (newdecimal) {
-            location = new Decimal(JSON.parse(saved));
+        if (newdecimal) { // checks if the value your setting to needs to be in newdecimal or not
+            location = new Decimal(JSON.parse(localStorage.getItem(saved)));
         } else {
-            location = JSON.parse(saved);
+            location = JSON.parse(localStorage.getItem(saved));
         }
     }
     return location;
@@ -29,19 +32,21 @@ function GetItems(saved, location, newdecimal) {
 
 function Get() {
     if (localStorage) {
-    player.money = GetItems(localStorage.getItem("money"), player.money, true);
-    player.water.amount = GetItems(localStorage.getItem("wateramount"), player.water.amount, true);
-    player.water.emptyamount = GetItems(localStorage.getItem("wateremptyamount"), player.water.emptyamount, true);
-    player.water.sell = GetItems(localStorage.getItem("watersell"), player.water.sell, true);
-    player.water.waterbottleamount = GetItems(localStorage.getItem("waterbottleamount"), player.water.waterbottleamount, true);
-    player.water.waterbottleamountmax = GetItems(localStorage.getItem("waterbottleamountmax"), player.water.waterbottleamountmax, true);
-    player.water.drinkamount = GetItems(localStorage.getItem("waterdrinkamount"), player.water.drinkamount, true);
-    player.water.drinkcooldown = GetItems(localStorage.getItem("waterdrinkcooldown"), player.water.drinkcooldown, true);
-    player.water.drinkcooldownmax = GetItems(localStorage.getItem("waterdrinkcooldownmax"), player.water.drinkcooldownmax, true);
+    player.money = GetItems("money", true);
+    player.water.amount = GetItems("wateramount", true);
+    player.water.emptyamount = GetItems("wateremptyamount", true);
+    player.water.sell = GetItems("watersell", true);
+    player.water.waterbottleamount = GetItems("waterbottleamount", true);
+    player.water.waterbottleamountmax = GetItems("waterbottleamountmax", true);
+    player.water.drinkamount = GetItems("waterdrinkamount", true);
+    player.water.drinkcooldown = GetItems("waterdrinkcooldown", true);
+    player.water.drinkcooldownmax = GetItems("waterdrinkcooldownmax", true);
+    player.upgrade.deflation = GetItems("upgradedeflation", true);
+    player.upgrade.deflationcost = GetItems("upgradedeflationcost", true);
     }
 }
 
 function HardReset() {
-    localStorage.clear();
+    localStorage.clear(); // wipe localstorage
     location.reload(true)
 }

@@ -14,13 +14,20 @@ body {
     justify-content: center;
 }
 
+#notice {
+    position: absolute;
+    margin: 0 auto;
+    color: rgb(153, 153, 153);
+    top: 50;
+    font-size: medium;
+}
 
 div[id="MoneyLabel"] {
-    display: flex;
-    color: white;
+    position: absolute;
+    color: rgb(168, 255, 221);
     font-family: monospace;
-    justify-content: center;
-    margin-top: 30px;
+    margin: 0 auto;
+    margin-top: 70px;
 }
 
 pre {
@@ -100,7 +107,7 @@ button[id="sellwater"] {
     position: absolute;
     top: 266;
     margin: 0 auto;
-    transform: translateX(260px);
+    transform: translateX(259px);
     z-index: 1;
     width: 100px;
     background-color: lightblue;
@@ -127,4 +134,46 @@ button[id="sellwater"] {
     background-color: rgba(177, 0, 0, 0.338);
     color: rgb(255, 255, 255);
     border: 2px solid rgb(177, 0, 0);
+}
+
+#upgrades {
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    margin: 0 auto;
+    top: 590;
+    background-color: transparent;
+    width: 600;
+    height: 130;
+}
+
+#deflation {
+    cursor: pointer;
+    padding: 20px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 160px;
+}
+#deflation .title {
+    margin: 0 auto;
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: bold;
+    margin-bottom: 5px; /* Space between title and description */
+}
+
+#deflation .description {
+    margin: 0 auto;
+    font-size: 14px; /* Adjust font size as needed */
+}
+
+#upgradestext{
+    position: absolute;
+    margin: 0 auto;
+    top: 500;
+    color: white;
 }
