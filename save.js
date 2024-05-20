@@ -14,6 +14,7 @@ function Save() {
         saveitems("waterdrinkamount", player.water.drinkamount)
         saveitems("waterdrinkcooldown", player.water.drinkcooldown)
         saveitems("waterdrinkcooldownmax", player.water.drinkcooldownmax)
+        saveitems("watercost", player.water.cost)
         saveitems("upgradedeflation", player.upgrade.deflation)
         saveitems("upgradedeflationcost", player.upgrade.deflationcost)
     }
@@ -44,6 +45,7 @@ function Get() {
     player.water.drinkamount = GetItems("waterdrinkamount", true);
     player.water.drinkcooldown = GetItems("waterdrinkcooldown", true);
     player.water.drinkcooldownmax = GetItems("waterdrinkcooldownmax", true);
+    player.water.cost = GetItems("watercost", true)
     player.upgrade.deflation = GetItems("upgradedeflation", true);
     player.upgrade.deflationcost = GetItems("upgradedeflationcost", true);
     }}

@@ -32,7 +32,6 @@ let player = {
     }
 };
 function checkifbelowcost() {
-    
         player.money = player.water.cost
         const textElement = document.querySelector("#notice");
         textElement.style.transition = "none"
@@ -40,9 +39,11 @@ function checkifbelowcost() {
         setTimeout(() => {
             textElement.style.transition = "color 3s cubic-bezier(1,0,.35,.98)";
             textElement.style.color = "rgb(153, 153, 153)";
+            Save()
         }, 2000)
 
 }
+
 setInterval(function() { // gametick
     player.money = new Decimal(Decimal.round(player.money.mul(100)).div(100)) // round money to 0.00
     MoneyLabel.textContent = `\u20ac${parseFloat(format(player.money)).toFixed(2)}`
@@ -54,9 +55,9 @@ setInterval(function() { // gametick
     WaterBottle.style.height = parseFloat(format(Decimal.div(player.water.waterbottleamount, player.water.waterbottleamountmax).mul(205)))
     WaterBottle.style.top = (266*1.77 - parseFloat(WaterBottle.style.height));
     }
-    WaterCost.textContent = `Cost: \u20ac${parseFloat(format(player.water.cost)).toFixed(2)}`;
-    if (DeflationCost.textContent != "Maxed") {
-    DeflationCost.textContent = `Cost: \u20ac${parseFloat(format(player.upgrade.deflationcost)).toFixed(2)}`;
+    WaterCost.textContent = formatcost(player.water.cost); // formatcost is in shortcut.js
+    if (player.upgrade.deflation != 13) {
+    DeflationCost.textContent = formatcost(player.upgrade.deflationcost);
     }
     if (player.water.drinkcooldown.gte(0.01)) {
         player.water.drinkcooldown = player.water.drinkcooldown.sub(new Decimal(1).div(50))
@@ -125,8 +126,10 @@ DeflationButton.addEventListener("click", function(){
         player.money = player.money.sub(player.upgrade.deflationcost)
         player.water.cost = player.water.cost.sub(0.01)
         player.upgrade.deflationcost = player.upgrade.deflationcost.mul(2.1)
+        player.upgrade.deflation = player.upgrade.deflation.add(1)
         if (new Decimal(Decimal.round(player.water.cost.mul(100)).div(100)) == 0.01) {
             DeflationCost.textContent = "Maxed"
+            player.upgrade.deflation = new Decimal(13)
         }
     }}
     Save()
