@@ -163,7 +163,9 @@ button[id="sellwater"] {
     top: 500;
     color: white;
 }
-
+#betterbrand {
+    display: none;
+}
 .upgrades {
     cursor: pointer;
     padding: 20px;
