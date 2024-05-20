@@ -17,6 +17,8 @@ function Save() {
         saveitems("watercost", player.water.cost)
         saveitems("upgradedeflation", player.upgrade.deflation)
         saveitems("upgradedeflationcost", player.upgrade.deflationcost)
+        saveitems("upgradebetterbrandcost", player.upgrade.betterbrandcost)
+        saveitems("upgradebetterbrand", player.upgrade.betterbrand)
     }
 }
 
@@ -48,6 +50,8 @@ function Get() {
     player.water.cost = GetItems("watercost", true)
     player.upgrade.deflation = GetItems("upgradedeflation", true);
     player.upgrade.deflationcost = GetItems("upgradedeflationcost", true);
+    player.upgrade.betterbrand = GetItems("upgradebetterbrand", true);
+    player.upgrade.betterbrandcost = GetItems("upgradebetterbrandcost", true);
     }}
 }
 

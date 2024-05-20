@@ -146,8 +146,25 @@ button[id="sellwater"] {
     width: 600;
     height: 130;
 }
+.title {
+    margin: 0 auto;
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: bold;
+    margin-bottom: 5px; /* Space between title and description */
+}
+.description {
+    margin: 0 auto;
+    font-size: 14px; /* Adjust font size as needed */
+}
 
-#deflation {
+#upgradestext{
+    position: absolute;
+    margin: 0 auto;
+    top: 500;
+    color: white;
+}
+
+.upgrades {
     cursor: pointer;
     padding: 20px;
     background-color: transparent;
@@ -158,22 +175,4 @@ button[id="sellwater"] {
     align-items: flex-start;
     justify-content: center;
     width: 160px;
-}
-#deflation .title {
-    margin: 0 auto;
-    font-size: 16px; /* Adjust font size as needed */
-    font-weight: bold;
-    margin-bottom: 5px; /* Space between title and description */
-}
-
-#deflation .description {
-    margin: 0 auto;
-    font-size: 14px; /* Adjust font size as needed */
-}
-
-#upgradestext{
-    position: absolute;
-    margin: 0 auto;
-    top: 500;
-    color: white;
 }
