@@ -75,6 +75,11 @@ setInterval(function() { // gametick
     if (player.money.lte(player.water.cost.sub(0.001)) && player.water.emptyamount == 0 && player.water.amount == 0) {
     checkifbelowcost() // in a function so it doesnt interrupt gametick
     }
+    if (player.upgrade.deflation.gte(0.1)) {
+        BetterBrandButton.style.display = "flex"
+    } else {
+        BetterBrandButton.style.display = "none"
+    }
 }, 20)
 
 setInterval(function(){ //autosave
