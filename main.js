@@ -95,7 +95,7 @@ WaterSell.addEventListener("click", function() {
 })
 
 WaterBuy.addEventListener("click", function() {
-    if (player.money.gte(player.water.cost)) {
+    if (player.money.gte(player.water.cost.sub(0.001)) {
         player.money = player.money.sub(player.water.cost)
         player.water.amount = player.water.amount.add(1)
         if (player.water.waterbottleamount.lte(0.1)) {
