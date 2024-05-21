@@ -166,6 +166,11 @@ button[id="sellwater"] {
 #betterbrand {
     display: none;
 }
+
+input[type="button"] {
+touch-action: manipulation;
+}
+
 .upgrades {
     cursor: pointer;
     padding: 20px;
