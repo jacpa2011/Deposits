@@ -153,12 +153,12 @@ WaterDrink.addEventListener("click", function() {
 })
 
 DeflationButton.addEventListener("click", function(){
-    if (player.upgrade.deflation != 13) { // check if upgrade isnt maxed out 
-    if (player.money.sub(player.upgrade.deflationcost).gte(0)) {
-        player.money = player.money.sub(player.upgrade.deflationcost)
-        player.upgrade.deflationcost = player.upgrade.deflationcost.mul(1.9)
-        player.upgrade.deflation = player.upgrade.deflation.add(1)
-    }
+    if (player.upgrade.deflation.lte(12.9)) { // check if upgrade isnt maxed out 
+        if (player.money.sub(player.upgrade.deflationcost).gte(0)) {
+            player.money = player.money.sub(player.upgrade.deflationcost)
+            player.upgrade.deflationcost = player.upgrade.deflationcost.mul(1.9)
+            player.upgrade.deflation = player.upgrade.deflation.add(1)
+        }
     }
     Save()
 })
@@ -173,10 +173,12 @@ BetterBrandButton.addEventListener("click", function(){
 })
 
 BetterConditionButton.addEventListener("click", function(){
-    if (player.money.sub(player.upgrade.betterconditioncost).gte(0)) {
-        player.money = player.money.sub(player.upgrade.betterconditioncost)
-        player.upgrade.betterconditioncost = player.upgrade.betterconditioncost.mul(3)
-        player.upgrade.bettercondition = player.upgrade.bettercondition.add(1)
+    if (player.upgrade.bettercondition.lte(8.9)) {
+        if (player.money.sub(player.upgrade.betterconditioncost).gte(0)) {
+            player.money = player.money.sub(player.upgrade.betterconditioncost)
+            player.upgrade.betterconditioncost = player.upgrade.betterconditioncost.mul(3)
+            player.upgrade.bettercondition = player.upgrade.bettercondition.add(1)
+        }
     }
 })
 
