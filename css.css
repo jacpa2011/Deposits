@@ -144,17 +144,17 @@ button[id="sellwater"] {
     top: 590;
     background-color: transparent;
     width: 600;
-    height: 130;
+    height: 150;
 }
 .title {
     margin: 0 auto;
-    font-size: 16px; /* Adjust font size as needed */
+    font-size: 15px;
     font-weight: bold;
-    margin-bottom: 5px; /* Space between title and description */
+    margin-bottom: 5px;
 }
 .description {
     margin: 0 auto;
-    font-size: 14px; /* Adjust font size as needed */
+    font-size: 13px;
 }
 
 #upgradestext{
@@ -166,6 +166,9 @@ button[id="sellwater"] {
 #betterbrand {
     display: none;
 }
+#bettercondition {
+    display: none;
+}
 
 input[type="button"] {
 touch-action: manipulation;
@@ -173,7 +176,7 @@ touch-action: manipulation;
 
 .upgrades {
     cursor: pointer;
-    padding: 20px;
+    padding: 4px;
     background-color: transparent;
     color: white;
     border: 2px solid white;
@@ -181,5 +184,5 @@ touch-action: manipulation;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 160px;
+    width: 180px;
 }

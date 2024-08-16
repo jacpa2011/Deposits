@@ -13,6 +13,8 @@ const DeflationCost = document.querySelector("#deflationcost")
 const DeflationButton = document.querySelector("#deflation")
 const BetterBrandCost = document.querySelector("#betterbrandcost")
 const BetterBrandButton = document.querySelector("#betterbrand")
+const BetterConditionCost = document.querySelector("#betterconditioncost")
+const BetterConditionButton = document.querySelector("#bettercondition")
 const hardreset = document.querySelector("#hardreset")
 
 let player = {
@@ -33,6 +35,8 @@ let player = {
         deflationcost: new Decimal(0.35),
         betterbrand: new Decimal(0),
         betterbrandcost: new Decimal(0.20),
+        bettercondition: new Decimal(0),
+        betterconditioncost: new Decimal(1.5),
     }
 };
 function checkifbelowcost() {
@@ -47,7 +51,6 @@ function checkifbelowcost() {
         }, 2000)
 
 }
-
 setInterval(function() { // gametick
     player.money = new Decimal(Decimal.round(player.money.mul(100)).div(100)) // round money to 0.00
     MoneyLabel.textContent = formatupto2euro(player.money)
@@ -60,18 +63,30 @@ setInterval(function() { // gametick
     WaterBottle.style.top = (266*1.77 - parseFloat(WaterBottle.style.height));
     }
     WaterCost.textContent = `Cost: ${formatupto2euro(player.water.cost)}` // format is in shortcut.js
-    if (player.upgrade.deflation != 13) {
+    player.water.sell = new Decimal(0.15)
+    player.water.sell = player.water.sell.mul(new Decimal(1.2).pow(player.upgrade.betterbrand))
+    player.water.cost = new Decimal(0.14)
+    player.water.cost = player.water.cost.sub(new Decimal(0.01).mul(player.upgrade.deflation))
+    player.water.drinkcooldownmax = new Decimal(1.5)
+    player.water.drinkcooldownmax = player.water.drinkcooldownmax.div(new Decimal(1.3).pow(player.upgrade.bettercondition))
+    if (player.upgrade.deflation.lte(12.9)) { // if deflation = 13 then maxed
     DeflationCost.textContent = `Cost: ${formatupto2euro(player.upgrade.deflationcost)}`;
     } else {
         DeflationCost.textContent = `Maxed`; 
     }
     BetterBrandCost.textContent = `Cost: ${formatupto2euro(player.upgrade.betterbrandcost)}`
+    if (player.upgrade.bettercondition.lte(8.9)) { // if bettercondition = 9 then maxed
+        BetterConditionCost.textContent = `Cost: ${formatupto2euro(player.upgrade.betterconditioncost)}`
+    } else {
+        BetterConditionCost.textContent = `Maxed`
+    }
     if (player.water.drinkcooldown.gte(0.01)) {
         player.water.drinkcooldown = player.water.drinkcooldown.sub(new Decimal(1).div(50))
     }
     else {
         player.water.drinkcooldown = new Decimal(0)
     }
+    
     if (player.money.lte(player.water.cost.sub(0.001)) && player.water.emptyamount == 0 && player.water.amount == 0) {
     checkifbelowcost() // in a function so it doesnt interrupt gametick
     }
@@ -79,6 +94,11 @@ setInterval(function() { // gametick
         BetterBrandButton.style.display = "flex"
     } else {
         BetterBrandButton.style.display = "none"
+    }
+    if (BetterConditionButton.style.dispaly = "none") {
+        if (player.money.gte(1.49)) {
+            BetterConditionButton.style.display = "flex"
+        }
     }
 }, 20)
 
@@ -133,15 +153,11 @@ WaterDrink.addEventListener("click", function() {
 })
 
 DeflationButton.addEventListener("click", function(){
-    if (player.upgrade.deflation != 13) {
+    if (player.upgrade.deflation != 13) { // check if upgrade isnt maxed out 
     if (player.money.sub(player.upgrade.deflationcost).gte(0)) {
         player.money = player.money.sub(player.upgrade.deflationcost)
-        player.water.cost = player.water.cost.sub(0.01)
-        player.upgrade.deflationcost = player.upgrade.deflationcost.mul(2.1)
+        player.upgrade.deflationcost = player.upgrade.deflationcost.mul(1.9)
         player.upgrade.deflation = player.upgrade.deflation.add(1)
-        if (new Decimal(Decimal.round(player.water.cost.mul(100)).div(100)) == 0.01) {
-            DeflationCost.textContent = "Maxed"
-        }
     }
     }
     Save()
@@ -150,11 +166,18 @@ DeflationButton.addEventListener("click", function(){
 BetterBrandButton.addEventListener("click", function(){
     if (player.money.sub(player.upgrade.betterbrandcost).gte(0)) {
         player.money = player.money.sub(player.upgrade.betterbrandcost)
-        player.water.sell = player.water.sell.mul(1.2)
-        player.upgrade.betterbrandcost = player.upgrade.betterbrandcost.mul(1.5)
+        player.upgrade.betterbrandcost = player.upgrade.betterbrandcost.mul(2.2)
         player.upgrade.betterbrand = player.upgrade.betterbrand.add(1)
     }
     Save()
+})
+
+BetterConditionButton.addEventListener("click", function(){
+    if (player.money.sub(player.upgrade.betterconditioncost).gte(0)) {
+        player.money = player.money.sub(player.upgrade.betterconditioncost)
+        player.upgrade.betterconditioncost = player.upgrade.betterconditioncost.mul(3)
+        player.upgrade.bettercondition = player.upgrade.bettercondition.add(1)
+    }
 })
 
 hardreset.addEventListener("click", function(){
