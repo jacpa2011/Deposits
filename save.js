@@ -4,7 +4,7 @@ function saveitems(name, location) { // this basically just removes the localsto
 
 function Save() {
     if (localStorage) {
-        saveitems("firstload", false)
+        localStorage.setItem('has_visited', 'true');
         saveitems("money", player.money);
         saveitems("wateramount", player.water.amount)
         saveitems("wateremptyamount", player.water.emptyamount)
@@ -35,7 +35,6 @@ function GetItems(saved, newdecimal) { //removes json.parse and localstorage
 }
 function isFirstVisit() {
     if (!localStorage.getItem('has_visited')) {
-      localStorage.setItem('has_visited', 'true');
       return true; // First visit
     }
     return false; // Returning visitor
