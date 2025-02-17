@@ -31,7 +31,7 @@ function GetItems(saved, newdecimal) { //removes json.parse and localstorage
             location = JSON.parse(localStorage.getItem(saved));
         }
     }
-    return location;
+    return location
 }
 function isFirstVisit() {
     if (!localStorage.getItem('has_visited')) {
@@ -56,6 +56,8 @@ function Get() {
     player.upgrade.deflationcost = GetItems("upgradedeflationcost", true);
     player.upgrade.betterbrand = GetItems("upgradebetterbrand", true);
     player.upgrade.betterbrandcost = GetItems("upgradebetterbrandcost", true);
+    } else {
+        Save()
     }}
 }
 
