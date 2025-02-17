@@ -33,11 +33,16 @@ function GetItems(saved, newdecimal) { //removes json.parse and localstorage
     }
     return location;
 }
-
+function isFirstVisit() {
+    if (!localStorage.getItem('has_visited')) {
+      localStorage.setItem('has_visited', 'true');
+      return true; // First visit
+    }
+    return false; // Returning visitor
+  }
 function Get() {
     if (localStorage) {
-    let notfirstload = GetItems("notfirstload", false)
-    if (notfirstload) {
+    if (!isFirstVisit()) {
     player.money = GetItems("money", true);
     player.water.amount = GetItems("wateramount", true);
     player.water.emptyamount = GetItems("wateremptyamount", true);
@@ -57,6 +62,5 @@ function Get() {
 
 function HardReset() {
     localStorage.clear(); // wipe localstorage
-    saveitems("notfirstload", false)
     location.reload(true)
 }
