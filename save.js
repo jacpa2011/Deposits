@@ -36,8 +36,8 @@ function GetItems(saved, newdecimal) { //removes json.parse and localstorage
 
 function Get() {
     if (localStorage) {
-    let firstload = GetItems("firstload", false)
-    if (!firstload) {
+    let notfirstload = GetItems("notfirstload", false)
+    if (notfirstload) {
     player.money = GetItems("money", true);
     player.water.amount = GetItems("wateramount", true);
     player.water.emptyamount = GetItems("wateremptyamount", true);
@@ -57,6 +57,6 @@ function Get() {
 
 function HardReset() {
     localStorage.clear(); // wipe localstorage
-    saveitems("firstload", true)
+    saveitems("notfirstload", false)
     location.reload(true)
 }
